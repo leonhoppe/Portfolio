@@ -2,8 +2,44 @@
 
 html, body { height: 100vh; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*, html {scroll-behavior: smooth !important;}
 
 mat-drawer > div {
   display: flex;
   flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background: #484c52;
+  border-radius: 2.5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5b6067;
+}
+
+@function css-function( $function, $values... ) {
+  @return
+    $function
+		+ unquote( '(' )
+		+ $values
+		+ unquote( ')' )
+;
+}
+
+@function css-min( $values... ) {
+  @return css-function( min, $values );
+}
+
+@function css-max( $values... ) {
+  @return css-function( max, $values );
+}
+
+@function css-clamp( $values... ) {
+  @return css-function( clamp, $values );
 }

@@ -1,0 +1,31 @@
+<section id="hero" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <div class="artwork">
+    <div class="circle big-circle"></div>
+    <div class="circle small-circle"></div>
+    <div class="circle image"></div>
+  </div>
+  <h1>
+    <span>Hallo, ich bin Leon Hoppe,</span><br>
+    full stack developer
+  </h1>
+  <p>
+    Auf dieser Seite erfahren Sie, an welchen Projekten ich bereits gearbeitet habe,<br>
+    was meine Programmierkenntnisse sind und welche Pläne ich für die Zukunft habe.
+  </p>
+  <a href="#projects">Mehr erfahren</a>
+</section>
+
+<section id="projects" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <h1>Projekte</h1>
+  <a routerLink="/projects">alle ansehen</a>
+  <div id="project-wrapper">
+    <div class="project" *ngFor="let project of projects | featuredProjects">
+      <img src="{{project.cover}}" alt="{{project.name}}">
+      <h2>{{project.name}}</h2>
+      <span>{{project.description}}</span>
+      <div class="project-buttons">
+        <a class="project-button" *ngFor="let button of project.buttons" href="{{button.link}}">{{button.text}}</a>
+      </div>
+    </div>
+  </div>
+</section>

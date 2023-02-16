@@ -25,4 +25,18 @@ export class NavigationComponent {
     {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
   ]
 
+  public cleanUrl(url: string): string {
+    try {
+      url = location.origin + url;
+      const urlObj = new URL(url);
+
+      urlObj.search = '';
+      urlObj.hash = '';
+
+      return urlObj.toString().replace(location.origin, "");
+    } catch {
+      return "";
+    }
+  }
+
 }

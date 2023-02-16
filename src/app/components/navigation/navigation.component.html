@@ -1,9 +1,9 @@
 <nav class="header">
-  <img src="favicon.ico" alt="logo" class="logo" draggable="false">
+  <img src="../../../favicon.ico" alt="logo" class="logo" draggable="false">
   <span class="name">Leon Hoppe</span>
 
   <div id="header-links" *ngIf="!deviceService.isMobile()">
-    <a class="header-link" *ngFor="let link of navLinks" [routerLink]="link.href"  [ngClass]="{'active': router.url == link.href}">{{link.label}}</a>
+    <a class="header-link" *ngFor="let link of navLinks" [routerLink]="link.href"  [ngClass]="{'active': cleanUrl(router.url) == link.href}">{{link.label}}</a>
   </div>
 
   <div id="social-media" [ngStyle]="{'margin-left': deviceService.isMobile() ? 'auto' : ''}">
@@ -18,7 +18,7 @@
 </section>
 
 <nav *ngIf="deviceService.isMobile()" class="footer">
-  <button mat-button class="footer-link" *ngFor="let link of navLinks" [routerLink]="link.href" [ngClass]="{'active': router.url == link.href}">
+  <button mat-button class="footer-link" *ngFor="let link of navLinks" [routerLink]="link.href" [ngClass]="{'active': cleanUrl(router.url) == link.href}">
     <mat-icon>{{link.icon}}</mat-icon>
   </button>
 </nav>
