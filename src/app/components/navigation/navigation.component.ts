@@ -23,7 +23,7 @@ export class NavigationComponent {
     {href: 'https://www.instagram.com/leonh.23/', image: 'https://instagram.com/favicon.ico'},
     {href: 'https://git.leon-hoppe.de/leon.hoppe', image: 'https://git.leon-hoppe.de/favicon.ico'},
     {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
-  ]
+  ];
 
   public cleanUrl(url: string): string {
     try {

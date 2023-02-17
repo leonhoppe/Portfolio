@@ -8,7 +8,7 @@
 
   <div id="social-media" [ngStyle]="{'margin-left': deviceService.isMobile() ? 'auto' : ''}">
     <a class="header-social" target="_blank" *ngFor="let social of socialLinks" href="{{social.href}}">
-      <img src="{{social.image}}" alt="{{social.href}}">
+      <img src="{{social.image}}" alt="{{social.href}}" draggable="false">
     </a>
   </div>
 </nav>
