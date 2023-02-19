@@ -1,0 +1,14 @@
+<div class="project">
+  <img src="{{project.cover}}" alt="{{project.name}}" class="cover" draggable="false">
+  <h2 class="name">{{project.name}}</h2>
+  <div class="info" *ngIf="showInfo == ''">
+    <div class="languages">
+      <i [matTooltip]="language.label" class="language devicon-{{language.class}}-{{language.suffix || 'plain'}}" *ngFor="let language of project?.languages"></i>
+    </div>
+    <span class="status">{{project.status}}</span>
+  </div>
+  <span class="description">{{project.description}}</span>
+  <div class="buttons">
+    <fancy-button *ngFor="let button of project?.buttons" [href]="button.link" [label]="button.text" />
+  </div>
+</div>

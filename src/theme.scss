@@ -44,6 +44,15 @@ $angular-theme: modify-background($angular-theme, #0f1724);
 $primary: #8e5bd2;
 $secondary: #11a8bd;
 
+$gradient: linear-gradient(90deg, $primary, $secondary);
+$gradient-angled: linear-gradient(135deg, $primary, $secondary);
+$gradient-straight: linear-gradient($primary, $secondary);
+
+$padding: 12.5vw;
+$padding-small: 5vw;
+
+$desc-color: #7c8393;
+
 $color-config: mat.get-color-config($angular-theme);
 $background: map.get($color-config, 'background');
 $text: map.get($color-config, 'foreground');
@@ -54,4 +63,24 @@ body {
 
 * {
   color: map.get($text, 'text');
+}
+
+.title {
+  font-size: 35px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.home-section {
+  padding-inline: $padding;
+  user-select: none;
+  margin-bottom: 100px;
+
+  &.mobile {
+    padding-inline: $padding-small;
+
+    .title {
+      font-size: 25px;
+    }
+  }
 }

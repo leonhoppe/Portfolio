@@ -1,0 +1,7 @@
+<div class="technology">
+  <div class="tech-header">
+    <h2 class="tech-name">{{technology.name}}</h2>
+    <span class="tech-level">{{getTechnologyLevelName(technology.level)}}</span>
+  </div>
+  <div [class]="createTechProgressClasses(technology.level)" #slider></div>
+</div>

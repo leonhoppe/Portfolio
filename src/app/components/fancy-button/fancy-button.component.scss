@@ -1,0 +1,54 @@
+$text-move: hover-text-move 300ms forwards ease-out;
+
+.button {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+
+  width: max-content;
+  height: 40px;
+  padding-inline: 15px;
+  border: 1px solid #FFF;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+
+  .text-1 {
+    margin-top: 12px;
+  }
+
+  .text-2 {
+    opacity: 0;
+  }
+
+  &:hover {
+    .text-1 {
+      animation: hover-text 250ms forwards ease-out reverse, $text-move;
+    }
+
+    .text-2 {
+      animation: hover-text 300ms forwards ease-out, $text-move;
+    }
+  }
+}
+
+@keyframes hover-text {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hover-text-move {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-20px);
+  }
+}

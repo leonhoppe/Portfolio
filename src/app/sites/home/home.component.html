@@ -18,37 +18,24 @@
 <section id="projects" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
   <h1 class="title">Projekte</h1>
   <a routerLink="/projects">alle ansehen</a>
-  <div id="project-wrapper">
-    <div class="project" *ngFor="let project of projects | featuredProjects">
-      <img src="{{project.cover}}" alt="{{project.name}}">
-      <h2>{{project.name}}</h2>
-      <span>{{project.description}}</span>
-      <div class="project-buttons">
-        <a class="project-button" *ngFor="let button of project.buttons" href="{{button.link}}">{{button.text}}</a>
-      </div>
-    </div>
+  <div id="projects-wrapper" #projectsWrapper>
+    <app-project *ngFor="let project of projects | featuredProjects; let i = index" [project]="project" [ngStyle]="{'animation-delay': getAnimationDelay(i)}" />
   </div>
 </section>
 
 <section id="technologies" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
   <h1 class="title">Technologien</h1>
-  <a href="/technologies">mehr erfahren</a>
-  <div id="technology-wrapper">
-    <div class="technology" *ngFor="let technology of technologies">
-      <div class="tech-header">
-        <h2 class="tech-name">{{technology.name}}</h2>
-        <span class="tech-level">{{getTechnologyLevelName(technology.level)}}</span>
-      </div>
-      <div [class]="createTechProgressClasses(technology.level)"></div>
-    </div>
+  <a routerLink="/technologies">mehr erfahren</a>
+  <div class="technologies-wrapper">
+    <app-technology *ngFor="let technology of technologies" [technology]="technology" />
   </div>
 </section>
 
 <section id="about" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
   <h1 class="title">Über mich</h1>
-  <a href="/about">mehr erfahren</a>
-  <div id="timeline">
-    <div class="timestamp" *ngFor="let timestamp of timeline">
+  <a routerLink="/about">mehr erfahren</a>
+  <div id="timeline" #timelineElement>
+    <div class="timestamp" *ngFor="let timestamp of timeline; let i = index" [ngStyle]="{'--delay': getAnimationDelay(i, 500)}">
       <h2>{{timestamp.date}}</h2>
       <span>{{timestamp.description}}</span>
     </div>

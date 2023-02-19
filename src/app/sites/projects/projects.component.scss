@@ -1,0 +1,17 @@
+.home-section {
+  margin-top: 50px;
+
+  .projects-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    justify-content: space-evenly;
+    gap: 70px;
+
+    .project-wrapper {
+      opacity: 0;
+      animation: fade-in 250ms forwards;
+      width: 400px;
+    }
+  }
+}

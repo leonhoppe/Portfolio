@@ -1,0 +1,55 @@
+@use "src/theme";
+
+.technology {
+  .tech-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .tech-name {
+      margin: 0;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    .tech-level {
+      align-self: flex-end;
+      color: theme.$desc-color;
+    }
+  }
+
+  .tech-progress {
+    height: 10px;
+    border-radius: 5px;
+    background: theme.$gradient;
+    box-shadow: 0 3px 10px 0.5px rgba(theme.$primary, 0.4);
+    transition: width 200ms ease-out;
+    width: 0;
+
+    &.level-1 {
+      --width: 33%;
+    }
+
+    &.level-2 {
+      --width: 66%;
+    }
+
+    &.level-3 {
+      --width: 100%;
+    }
+
+    &.in-view {
+      animation: slider-in 500ms forwards ease-out;
+    }
+  }
+}
+
+@keyframes slider-in {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--width);
+  }
+}

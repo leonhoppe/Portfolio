@@ -1,0 +1,62 @@
+@use "src/theme";
+@use "src/styles" as s;
+@use "sass:map";
+
+.project {
+  width: 100%;
+  height: 500px;
+  padding: 5%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  background-color: map.get(theme.$background, 'background');
+  position: relative;
+  box-shadow: 0 0 40px -10px theme.$primary;
+
+  &:before {
+    position: absolute;
+    content: '';
+    inset: -1px;
+    background: theme.$gradient-straight;
+    z-index: -1;
+    border-radius: 30px;
+  }
+
+  .cover {
+    width: 100%;
+    height: 190px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .name {
+    margin-block: 10px;
+    font-size: 25px;
+    font-weight: normal;
+  }
+
+  .status, .languages i, .description {
+    color: theme.$desc-color;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+
+    .languages {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 5px;
+      font-size: 20px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: auto;
+  }
+}

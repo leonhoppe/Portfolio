@@ -1,0 +1,8 @@
+<section class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <h1 class="title">Alle Projekte</h1>
+  <div class="projects-wrapper">
+    <div class="project-wrapper" *ngFor="let project of projects; let i = index" [ngStyle]="{'animation-delay': getAnimationDelay(i)}">
+      <app-project [project]="project" showInfo />
+    </div>
+  </div>
+</section>

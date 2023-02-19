@@ -2,38 +2,9 @@
 @use "src/styles" as s;
 @use 'sass:map';
 
-$gradient: linear-gradient(90deg, theme.$primary, theme.$secondary);
-$gradient-angled: linear-gradient(135deg, theme.$primary, theme.$secondary);
-$gradient-straight: linear-gradient(theme.$primary, theme.$secondary);
-
-$padding: 12.5vw;
-$padding-small: 5vw;
-
-$desc-color: #7c8393;
-
-.title {
-  font-size: 35px;
-  display: inline;
-  margin-right: 10px;
-}
-
-.home-section {
-  padding-inline: $padding;
-  user-select: none;
-  margin-bottom: 100px;
-
-  &.mobile {
-    padding-inline: $padding-small;
-
-    .title {
-      font-size: 25px;
-    }
-  }
-}
-
 #hero {
   height: 100vh;
-  padding-left: $padding;
+  padding-left: theme.$padding;
   user-select: none;
   position: relative;
   overflow-x: hidden;
@@ -45,7 +16,7 @@ $desc-color: #7c8393;
     line-height:70px;
 
     span {
-      background: $gradient;
+      background: theme.$gradient;
       background-clip: text;
       color: transparent;
     }
@@ -53,7 +24,7 @@ $desc-color: #7c8393;
 
   p {
     font-size: 18px;
-    color: $desc-color;
+    color: theme.$desc-color;
   }
 
   a {
@@ -61,7 +32,7 @@ $desc-color: #7c8393;
     margin-top: 40px;
     height: 60px;
     width: 150px;
-    background: $gradient;
+    background: theme.$gradient;
     border-radius: 30px;
     font-size: 15px;
     text-align: center;
@@ -71,58 +42,8 @@ $desc-color: #7c8393;
     box-shadow: 0 0 40px -5px theme.$primary;
   }
 
-  .artwork {
-    position: absolute;
-    left: 55%;
-    top: 19vh;
-
-    .circle {
-      position: absolute;
-      aspect-ratio: 1 / 1;
-      z-index: -1;
-      background: $gradient-angled;
-      border-radius: 50%;
-
-      &:after {
-        content: '';
-        position: absolute;
-        inset: 1px;
-        background-color: map.get(theme.$background, 'background');
-        border-radius: 50%;
-      }
-    }
-
-    .big-circle {
-      left: 0;
-      top: 0;
-      width: 400px;
-    }
-
-    .small-circle {
-      top: 100px;
-      left: 350px;
-      width: 150px;
-
-      &:after {
-        content: none;
-      }
-    }
-
-    .image {
-      top: -50px;
-      left: 170px;
-      width: 250px;
-
-      &:after {
-        background-image: url("/favicon.ico");
-        background-size: 112%;
-        background-position: -15px -15px;
-      }
-    }
-  }
-
   &.mobile {
-    padding-left: $padding-small;
+    padding-left: theme.$padding-small;
 
     h1 {
       margin-top: 10vh;
@@ -142,143 +63,33 @@ $desc-color: #7c8393;
 }
 
 #projects {
-  #project-wrapper {
+  #projects-wrapper {
     display: flex;
     flex-wrap: wrap;
     margin-top: 70px;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 70px;
 
-    .project {
+    app-project {
       width: 400px;
-      height: 500px;
-      padding: 25px;
-      box-sizing: border-box;
+      opacity: 0;
+    }
 
-      background: map.get(theme.$background, 'background');
-      border-radius: 30px;
-      position: relative;
-
-      display: flex;
-      flex-direction: column;
-
-      box-shadow: 0 0 40px -10px theme.$primary;
-
-      &:before {
-        position: absolute;
-        inset: -1px;
-        content: '';
-        background: $gradient-straight;
-        border-radius: 30px;
-        z-index: -1;
-      }
-
-      img {
-        width: 350px;
-        height: 170px;
-        object-fit: cover;
-        border-radius: 12px;
-      }
-
-      h2 {
-        margin-block: 10px 5px;
-        font-size: 20px;
-      }
-
-      span {
-        color: $desc-color;
-      }
-
-      .project-buttons {
-        display: flex;
-        justify-content: space-evenly;
-        margin-top: auto;
-        flex-wrap: wrap;
-        gap: 5px;
-
-        .project-button {
-          display: block;
-          text-align: center;
-          line-height: 40px;
-
-          width: max-content;
-          height: 40px;
-          padding-inline: 15px;
-          border: 1px solid #FFF;
-          border-radius: 20px;
-          text-decoration: none;
-          font-size: 13px;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
+    &.in-view app-project {
+      animation: fade-in 250ms forwards;
     }
   }
 
   &.mobile {
-    #project-wrapper {
+    #projects-wrapper {
       margin-top: 30px;
       gap: 30px;
-
-      .project {
-        width: 100%;
-        height: 450px;
-        box-shadow: none;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
     }
   }
 }
 
 #technologies {
   margin-top: 300px;
-
-  #technology-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-top: 40px;
-
-    .technology {
-      .tech-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-
-        .tech-name {
-          margin: 0;
-          font-size: 20px;
-        }
-
-        .tech-level {
-          align-self: flex-end;
-          color: $desc-color;
-        }
-      }
-
-      .tech-progress {
-        height: 10px;
-        width: 100%;
-        border-radius: 5px;
-        background: $gradient;
-        box-shadow: 0 3px 10px 0.5px rgba(theme.$primary, 0.4);
-
-        &.level-1 {
-          width: 33%;
-        }
-
-        &.level-2 {
-          width: 66%;
-        }
-      }
-    }
-  }
 }
 
 #about {
@@ -295,14 +106,16 @@ $desc-color: #7c8393;
       flex-direction: column;
       gap: 50px;
       position: relative;
+      opacity: 0;
 
       h2 {
         font-size: 20px;
         margin: 0;
+        font-weight: normal;
       }
 
       span {
-        color: $desc-color;
+        color: theme.$desc-color;
         font-size: 14px;
       }
 
@@ -310,7 +123,7 @@ $desc-color: #7c8393;
         content: '';
         width: 15px;
         height: 15px;
-        background: $gradient-angled;
+        background: theme.$gradient-angled;
         border-radius: 50%;
         box-shadow: 0 3px 10px 0.5px rgba(theme.$primary, 0.4);
 
@@ -320,7 +133,7 @@ $desc-color: #7c8393;
 
       &:before {
         content: '';
-        width: 100%;
+        width: 0;
         height: 3px;
         background-color: #FFF;
         top: 51px;
@@ -329,6 +142,14 @@ $desc-color: #7c8393;
 
       &:last-of-type:before {
         display: none;
+      }
+    }
+
+    &.in-view .timestamp {
+      animation: fade-in 200ms forwards var(--delay) ease-out;
+
+      &:before {
+        animation: timestamp-in 500ms forwards var(--delay) ease-in-out;
       }
     }
   }
@@ -341,6 +162,8 @@ $desc-color: #7c8393;
         gap: 15px;
         padding-left: 30px;
         box-sizing: border-box;
+        animation: none;
+        opacity: 1;
 
         span {
           margin-bottom: 50px;
@@ -356,6 +179,7 @@ $desc-color: #7c8393;
           left: 1px;
           width: 3px;
           height: 100%;
+          animation: none;
         }
 
         &:last-of-type:before {
@@ -379,7 +203,7 @@ $desc-color: #7c8393;
   user-select: unset;
 
   .footer-title {
-    background: $gradient;
+    background: theme.$gradient;
     background-clip: text;
     color: transparent;
     font-weight: bold;
@@ -405,5 +229,15 @@ $desc-color: #7c8393;
     *:not(.footer-title) {
       display: none;
     }
+  }
+}
+
+@keyframes timestamp-in {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
   }
 }

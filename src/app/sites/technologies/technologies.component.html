@@ -1,0 +1,35 @@
+<section class="home-section" id="tech-projects" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <div class="artwork">
+    <div class="circle big-circle"></div>
+    <div class="circle small-circle"></div>
+    <div class="circle image"></div>
+  </div>
+  <h1 class="title">Technologien in Projekten</h1>
+  <div class="chart">
+    <div class="chart-container"><canvas #chard></canvas></div>
+  </div>
+</section>
+
+<section class="home-section" id="languages" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <h1 class="title">Programmiersprachen</h1>
+  <div class="technologies-wrapper">
+    <app-technology *ngFor="let technology of technologies | languages" [technology]="technology" />
+  </div>
+</section>
+
+<section class="home-section" id="frameworks" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <h1 class="title">Frameworks</h1>
+  <div class="technologies-wrapper">
+    <app-technology *ngFor="let technology of technologies | frameworks" [technology]="technology" />
+  </div>
+</section>
+
+<section class="home-section" id="additional" [ngClass]="{'mobile': deviceService.isMobile()}">
+  <h1 class="title">Zusätzliche Fähigkeiten</h1>
+  <div id="skills-wrapper">
+    <div class="skill" *ngFor="let skill of technologies | skills">
+      <div class="dot"></div>
+      <h2>{{skill.name}}</h2>
+    </div>
+  </div>
+</section>
