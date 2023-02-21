@@ -8,7 +8,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { HomeComponent } from './sites/home/home.component';
-import { FeaturedProjectsPipe } from './pipes/featured-projects.pipe';
+import { FeaturedPipe } from './pipes/featured.pipe';
 import { ProjectsComponent } from './sites/projects/projects.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { FancyButtonComponent } from './components/fancy-button/fancy-button.component';
@@ -18,13 +18,17 @@ import { TechnologyComponent } from './components/technology/technology.componen
 import { LanguagesPipe } from './pipes/languages.pipe';
 import { FrameworksPipe } from './pipes/frameworks.pipe';
 import { SkillsPipe } from './pipes/skills.pipe';
+import { ContactComponent } from './sites/contact/contact.component';
+import { AboutComponent } from './sites/about/about.component';
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
-    FeaturedProjectsPipe,
+    FeaturedPipe,
     ProjectsComponent,
     FancyButtonComponent,
     ProjectComponent,
@@ -32,7 +36,9 @@ import { SkillsPipe } from './pipes/skills.pipe';
     TechnologyComponent,
     LanguagesPipe,
     FrameworksPipe,
-    SkillsPipe
+    SkillsPipe,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -40,7 +46,9 @@ import { SkillsPipe } from './pipes/skills.pipe';
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

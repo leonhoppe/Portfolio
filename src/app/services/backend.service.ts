@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
 import {Language, Project} from "../models/project";
 import {Technology} from "../models/technology";
+import {Timestamp} from "../models/timestamp";
+import {Social} from "../models/social";
+import {Message} from "../models/message";
 
 
 @Injectable({
@@ -44,6 +47,22 @@ export class BackendService {
 
   public async getTechnologies(): Promise<Technology[]> {
     return await this.pb?.collection('technologies').getFullList();
+  }
+
+  public async getTimeline(): Promise<Timestamp[]> {
+    return await this.pb?.collection('timeline').getFullList();
+  }
+
+  public async getSocials(): Promise<Social[]> {
+    return [
+      {href: 'https://www.instagram.com/leonh.23/', image: 'https://instagram.com/favicon.ico'},
+      {href: 'https://git.leon-hoppe.de/leon.hoppe', image: 'https://git.leon-hoppe.de/favicon.ico'},
+      {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
+    ];
+  }
+
+  public async sendMessage(message: Message) {
+    await this.pb?.collection('messages').create(message);
   }
 
 }

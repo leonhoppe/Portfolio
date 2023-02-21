@@ -115,8 +115,10 @@
       }
 
       span {
+        box-sizing: border-box;
         color: theme.$desc-color;
         font-size: 14px;
+        padding-right: 10px;
       }
 
       &:after {

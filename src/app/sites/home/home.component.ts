@@ -4,6 +4,7 @@ import {Project} from "../../models/project";
 import {Technology} from "../../models/technology";
 import {BackendService} from "../../services/backend.service";
 import {AnimatorService} from "../../services/animator.service";
+import {Timestamp} from "../../models/timestamp";
 
 @Component({
   selector: 'app-home',
@@ -16,21 +17,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('timelineElement') timelineElement: ElementRef;
   public projects: Project[];
   public technologies: Technology[];
+  public timeline: Timestamp[];
+  public socialLinks: {href: string, image: string}[];
 
   public constructor(public deviceService: DeviceDetectorService, private backend: BackendService, private animator: AnimatorService) {}
-
-  public timeline: {date: number, description: string}[] = [
-    {date: 2010, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur excepturi facere, fuga maxime nulla qui voluptas voluptates? Adipisci asperiores dolor error iste sunt tempore. Blanditiis illum mollitia nostrum quae vero?"},
-    {date: 2015, description: "Lorem ipsum dolor sit amet"},
-    {date: 2017, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur excepturi facere, fuga maxime nulla qui voluptas voluptates? Adipisci asperiores dolor error iste sunt tempore. Blanditiis illum mollitia nostrum quae vero?"},
-    {date: 2022, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur excepturi facere, fuga maxime nulla qui voluptas voluptates? Adipisci asperiores dolor error iste sunt tempore. Blanditiis illum mollitia nostrum quae vero?"},
-  ];
-
-  public socialLinks: {href: string, image: string}[] = [
-    {href: 'https://www.instagram.com/leonh.23/', image: 'https://instagram.com/favicon.ico'},
-    {href: 'https://git.leon-hoppe.de/leon.hoppe', image: 'https://git.leon-hoppe.de/favicon.ico'},
-    {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
-  ];
 
   public getAnimationDelay(index: number, multiplier = 150): string {
     return `${index * multiplier}ms`;
@@ -38,7 +28,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.projects = await this.backend.getProjects();
-    this.technologies = (await this.backend.getTechnologies()).filter(tech => tech.featured);
+    this.technologies = await this.backend.getTechnologies();
+    this.timeline = await this.backend.getTimeline();
+    this.socialLinks = await this.backend.getSocials();
   }
 
   ngAfterViewInit(): void {

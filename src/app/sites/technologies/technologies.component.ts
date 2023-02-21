@@ -11,7 +11,7 @@ import {DeviceDetectorService} from "ngx-device-detector";
 })
 export class TechnologiesComponent implements AfterViewInit {
 
-  @ViewChild('chard') chartRef: ElementRef;
+  @ViewChild('chart') chartRef: ElementRef;
   public technologies: Technology[];
 
   public constructor(public deviceService: DeviceDetectorService, private backend: BackendService) {}

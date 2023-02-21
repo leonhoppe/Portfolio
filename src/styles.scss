@@ -1,6 +1,8 @@
 @use "sass:map";
 @use "theme";
 
+@import '@sweetalert2/theme-dark/dark.scss';
+
 html, body { height: 100vh; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 *, html {scroll-behavior: smooth !important;}

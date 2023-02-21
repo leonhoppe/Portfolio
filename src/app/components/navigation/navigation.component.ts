@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DeviceDetectorService} from "ngx-device-detector";
 import {Router} from "@angular/router";
+import {BackendService} from "../../services/backend.service";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
 
-  public constructor(public deviceService: DeviceDetectorService, public router: Router) {}
+  public constructor(public deviceService: DeviceDetectorService, public router: Router, private backend: BackendService) {}
 
   public navLinks: {label: string, href: string, icon?: string}[] = [
     {label: 'Home', href: '/', icon: 'home'},
@@ -19,11 +20,7 @@ export class NavigationComponent {
     {label: 'Kontakt', href: '/contact', icon: 'mail'}
   ];
 
-  public socialLinks: {href: string, image: string}[] = [
-    {href: 'https://www.instagram.com/leonh.23/', image: 'https://instagram.com/favicon.ico'},
-    {href: 'https://git.leon-hoppe.de/leon.hoppe', image: 'https://git.leon-hoppe.de/favicon.ico'},
-    {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
-  ];
+  public socialLinks: {href: string, image: string}[];
 
   public cleanUrl(url: string): string {
     try {
@@ -37,6 +34,10 @@ export class NavigationComponent {
     } catch {
       return "";
     }
+  }
+
+  async ngOnInit() {
+    this.socialLinks = await this.backend.getSocials();
   }
 
 }

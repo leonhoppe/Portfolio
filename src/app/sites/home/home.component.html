@@ -19,7 +19,7 @@
   <h1 class="title">Projekte</h1>
   <a routerLink="/projects">alle ansehen</a>
   <div id="projects-wrapper" #projectsWrapper>
-    <app-project *ngFor="let project of projects | featuredProjects; let i = index" [project]="project" [ngStyle]="{'animation-delay': getAnimationDelay(i)}" />
+    <app-project *ngFor="let project of projects | featured; let i = index" [project]="project" [ngStyle]="{'animation-delay': getAnimationDelay(i)}" />
   </div>
 </section>
 
@@ -27,7 +27,7 @@
   <h1 class="title">Technologien</h1>
   <a routerLink="/technologies">mehr erfahren</a>
   <div class="technologies-wrapper">
-    <app-technology *ngFor="let technology of technologies" [technology]="technology" />
+    <app-technology *ngFor="let technology of technologies | featured" [technology]="technology" />
   </div>
 </section>
 
@@ -35,7 +35,7 @@
   <h1 class="title">Über mich</h1>
   <a routerLink="/about">mehr erfahren</a>
   <div id="timeline" #timelineElement>
-    <div class="timestamp" *ngFor="let timestamp of timeline; let i = index" [ngStyle]="{'--delay': getAnimationDelay(i, 500)}">
+    <div class="timestamp" *ngFor="let timestamp of timeline | featured; let i = index" [ngStyle]="{'--delay': getAnimationDelay(i, 500)}">
       <h2>{{timestamp.date}}</h2>
       <span>{{timestamp.description}}</span>
     </div>

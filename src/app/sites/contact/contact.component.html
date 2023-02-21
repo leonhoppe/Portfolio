@@ -1,0 +1,41 @@
+<div class="hider" [ngClass]="{'mobile': device.isMobile()}">
+  <div class="form-wrapper" [ngClass]="{'mobile': device.isMobile()}">
+    <form [formGroup]="form" (ngSubmit)="sendMessage()">
+      <section id="contact-info">
+        <h1>Kontakt</h1>
+        <span>leon@ladenbau-hoppe.de</span>
+        <span>+49 1575 8839776</span>
+      </section>
+
+      <section id="contact-form">
+        <h1>Schreiben Sie mir!</h1>
+
+        <div id="fields">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-error>Name ist erforderlich</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="form.hasError('required', 'email')">E-Mail ist erforderlich</mat-error>
+            <mat-error *ngIf="form.hasError('email', 'email') && !form.hasError('required', 'email')">
+              Bitte geben Sie eine gültige E-Mail-Adresse ein
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Nachricht</mat-label>
+            <textarea matInput formControlName="message"></textarea>
+            <mat-error>Nachricht ist erforderlich</mat-error>
+          </mat-form-field>
+        </div>
+
+        <button mat-button type="submit">Senden</button>
+      </section>
+    </form>
+  </div>
+
+</div>
