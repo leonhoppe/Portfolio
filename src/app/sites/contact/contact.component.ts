@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {BackendService} from "../../services/backend.service";
-import {DeviceDetectorService} from "ngx-device-detector";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
   selector: 'app-contact',
@@ -17,7 +17,10 @@ export class ContactComponent {
     message: new FormControl('', [Validators.required])
   });
 
-  public constructor(public backend: BackendService, public device: DeviceDetectorService) {}
+  public constructor(public backend: BackendService, private snackbar: MatSnackBar, private seo: SeoService) {
+    seo.setTitle("Kontakt");
+    seo.setDescription("Schreiben Sie mir eine Nachricht");
+  }
 
   public async sendMessage() {
     if (!this.form.valid) return;
@@ -29,12 +32,7 @@ export class ContactComponent {
     });
     this.form.reset();
 
-    Swal.fire({
-      icon: 'success',
-      title: 'Nachricht gesendet',
-      showConfirmButton: false,
-      timer: 1500
-    });
+    this.snackbar.open("Nachricht gesendet!", undefined, {duration: 2000});
   }
 
 }

@@ -22,6 +22,11 @@ import { ContactComponent } from './sites/contact/contact.component';
 import { AboutComponent } from './sites/about/about.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { TimestampComponent } from './components/timestamp/timestamp.component';
+import { CarrierPipe } from './pipes/carrier.pipe';
+import { ExperiencePipe } from './pipes/experience.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     FrameworksPipe,
     SkillsPipe,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    TimestampComponent,
+    CarrierPipe,
+    ExperiencePipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -48,7 +57,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatButtonModule,
     MatTooltipModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

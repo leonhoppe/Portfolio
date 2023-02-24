@@ -5,6 +5,7 @@ import {Technology} from "../models/technology";
 import {Timestamp} from "../models/timestamp";
 import {Social} from "../models/social";
 import {Message} from "../models/message";
+import {About} from "../models/about";
 
 
 @Injectable({
@@ -13,6 +14,13 @@ import {Message} from "../models/message";
 export class BackendService {
 
   private pb: PocketBase;
+
+  private states: {id: string, name: string}[] = [
+    {id: 'finished', name: "Fertig"},
+    {id: 'canceled', name: "Abgebrochen"},
+    {id: 'paused', name: "Pausiert"},
+    {id: 'development', name: "In Entwicklung"}
+  ]
 
   constructor() {
     this.pb = new PocketBase('https://ed168214-77da-44f1-9a61-859abb49edf8.api.leon-hoppe.de');
@@ -23,13 +31,12 @@ export class BackendService {
       sort: '-order'
     }) as Project[];
     const allLanguages = await this.pb?.collection('languages').getFullList();
-    const states = await this.pb?.collection('project_states').getFullList();
 
     const projects: Project[] = [];
     for(let rawProject of rawProjects) {
       const project = rawProject as Project;
 
-      project.status = states?.filter(state => state.id == rawProject.status)[0]['name'];
+      project.status = this.states?.filter(state => state.id == rawProject.status)[0]['name'];
 
       if (rawProject.languages != undefined) {
         const languages: Language[] = []
@@ -50,7 +57,9 @@ export class BackendService {
   }
 
   public async getTimeline(): Promise<Timestamp[]> {
-    return await this.pb?.collection('timeline').getFullList();
+    return await this.pb?.collection('timeline').getFullList(200, {
+      sort: 'date'
+    });
   }
 
   public async getSocials(): Promise<Social[]> {
@@ -59,6 +68,10 @@ export class BackendService {
       {href: 'https://git.leon-hoppe.de/leon.hoppe', image: 'https://git.leon-hoppe.de/favicon.ico'},
       {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
     ];
+  }
+
+  public async getAbout(): Promise<About> {
+    return await this.pb?.collection('about').getFirstListItem('');
   }
 
   public async sendMessage(message: Message) {

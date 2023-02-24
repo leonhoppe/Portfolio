@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DeviceDetectorService} from "ngx-device-detector";
 import {Router} from "@angular/router";
 import {BackendService} from "../../services/backend.service";
+import {Social} from "../../models/social";
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +10,7 @@ import {BackendService} from "../../services/backend.service";
 })
 export class NavigationComponent implements OnInit {
 
-  public constructor(public deviceService: DeviceDetectorService, public router: Router, private backend: BackendService) {}
+  public constructor(public router: Router, private backend: BackendService) {}
 
   public navLinks: {label: string, href: string, icon?: string}[] = [
     {label: 'Home', href: '/', icon: 'home'},
@@ -20,7 +20,7 @@ export class NavigationComponent implements OnInit {
     {label: 'Kontakt', href: '/contact', icon: 'mail'}
   ];
 
-  public socialLinks: {href: string, image: string}[];
+  public socialLinks: Social[];
 
   public cleanUrl(url: string): string {
     try {

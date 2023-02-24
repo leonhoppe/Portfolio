@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import Chart from 'chart.js/auto';
 import {BackendService} from "../../services/backend.service";
 import {Technology} from "../../models/technology";
-import {DeviceDetectorService} from "ngx-device-detector";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
   selector: 'app-technologies',
@@ -14,7 +14,10 @@ export class TechnologiesComponent implements AfterViewInit {
   @ViewChild('chart') chartRef: ElementRef;
   public technologies: Technology[];
 
-  public constructor(public deviceService: DeviceDetectorService, private backend: BackendService) {}
+  public constructor(private backend: BackendService, private seo: SeoService) {
+    seo.setTitle("Technologien");
+    seo.setDescription("Eine Übersicht über alle Technologien, die ich Benutze");
+  }
 
   async ngAfterViewInit() {
     const projects = await this.backend.getProjects();

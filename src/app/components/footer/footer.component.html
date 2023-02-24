@@ -1,0 +1,11 @@
+<footer id="footer" class="home-section">
+  <span class="footer-title">Portfolio von Leon Hoppe</span>
+  <a href="mailto://leon@ladenbau-hoppe.de">leon@ladenbau-hoppe.de</a>
+  <span>+49 1575 8839776</span>
+
+  <div id="social-media">
+    <a class="header-social" target="_blank" *ngFor="let social of socialLinks" href="{{social.href}}">
+      <img src="{{social.image}}" alt="{{social.href}}" draggable="false">
+    </a>
+  </div>
+</footer>

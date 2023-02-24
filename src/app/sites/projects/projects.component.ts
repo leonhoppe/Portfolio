@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from "../../models/project";
-import {DeviceDetectorService} from "ngx-device-detector";
 import {BackendService} from "../../services/backend.service";
+import {AnimatorService} from "../../services/animator.service";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
   selector: 'app-projects',
@@ -10,13 +11,12 @@ import {BackendService} from "../../services/backend.service";
 })
 export class ProjectsComponent implements OnInit {
 
-  public constructor(public deviceService: DeviceDetectorService, private backend: BackendService) {}
+  public constructor(private backend: BackendService, public animator: AnimatorService, private seo: SeoService) {
+    seo.setTitle("Projekte");
+    seo.setDescription("Ein Überblick von all meinen Projekten");
+  }
 
   public projects: Project[] | undefined;
-
-  public getAnimationDelay(index: number): string {
-    return `${index * 150}ms`;
-  }
 
   async ngOnInit() {
     this.projects = await this.backend.getProjects();

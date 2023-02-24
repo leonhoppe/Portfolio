@@ -1,1 +1,26 @@
-<p>about works!</p>
+<section class="home-section" id="about">
+  <div>
+    <h1 class="title">Über mich</h1>
+    <p [innerText]="about?.about"></p>
+  </div>
+  <div>
+    <h1 class="title">Zukünftige Projekte</h1>
+    <p [innerText]="about?.future"></p>
+  </div>
+</section>
+
+<section class="home-section" #experience>
+  <h1 class="title">Programmiererfahrung</h1>
+  <div class="timeline">
+    <app-timestamp *ngFor="let timestamp of timeline | experience; let i = index" [timestamp]="timestamp" [ngStyle]="{'--delay': animator.getAnimationDelay(i, 500)}" />
+  </div>
+</section>
+
+<section class="home-section" #carrier>
+  <h1 class="title">Karriere</h1>
+  <div class="timeline">
+    <app-timestamp *ngFor="let timestamp of timeline | carrier; let i = index" [timestamp]="timestamp" [ngStyle]="{'--delay': animator.getAnimationDelay(i, 500)}" />
+  </div>
+</section>
+
+<app-footer />

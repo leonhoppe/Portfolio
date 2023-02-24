@@ -16,4 +16,8 @@ export class AnimatorService {
     });
   }
 
+  public getAnimationDelay(index: number, multiplier = 150, additional = 0): string {
+    return `${index * multiplier + additional}ms`;
+  }
+
 }

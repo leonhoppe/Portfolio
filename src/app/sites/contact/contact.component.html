@@ -1,5 +1,6 @@
-<div class="hider" [ngClass]="{'mobile': device.isMobile()}">
-  <div class="form-wrapper" [ngClass]="{'mobile': device.isMobile()}">
+<div class="hider">
+
+  <div class="form-wrapper">
     <form [formGroup]="form" (ngSubmit)="sendMessage()">
       <section id="contact-info">
         <h1>Kontakt</h1>

@@ -1,12 +1,12 @@
-<section id="hero" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section id="hero">
   <div class="artwork">
     <div class="circle big-circle"></div>
     <div class="circle small-circle"></div>
     <div class="circle image"></div>
   </div>
   <h1>
-    <span>Hallo, ich bin Leon Hoppe,</span><br>
-    full stack developer
+    <span id="welcome">Hallo, ich bin Leon Hoppe,</span><br>
+    <span id="jobs">{{jobs.display}}</span>
   </h1>
   <p>
     Auf dieser Seite erfahren Sie, an welchen Projekten ich bereits gearbeitet habe,<br>
@@ -15,15 +15,15 @@
   <a href="#projects">Mehr erfahren</a>
 </section>
 
-<section id="projects" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section id="projects" class="home-section">
   <h1 class="title">Projekte</h1>
   <a routerLink="/projects">alle ansehen</a>
   <div id="projects-wrapper" #projectsWrapper>
-    <app-project *ngFor="let project of projects | featured; let i = index" [project]="project" [ngStyle]="{'animation-delay': getAnimationDelay(i)}" />
+    <app-project *ngFor="let project of projects | featured; let i = index" [project]="project" [ngStyle]="{'animation-delay': animator.getAnimationDelay(i)}" />
   </div>
 </section>
 
-<section id="technologies" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section id="technologies" class="home-section">
   <h1 class="title">Technologien</h1>
   <a routerLink="/technologies">mehr erfahren</a>
   <div class="technologies-wrapper">
@@ -31,25 +31,12 @@
   </div>
 </section>
 
-<section id="about" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section id="about" class="home-section">
   <h1 class="title">Über mich</h1>
   <a routerLink="/about">mehr erfahren</a>
-  <div id="timeline" #timelineElement>
-    <div class="timestamp" *ngFor="let timestamp of timeline | featured; let i = index" [ngStyle]="{'--delay': getAnimationDelay(i, 500)}">
-      <h2>{{timestamp.date}}</h2>
-      <span>{{timestamp.description}}</span>
-    </div>
+  <div class="timeline" #timelineElement>
+    <app-timestamp *ngFor="let timestamp of timeline | featured; let i = index" [timestamp]="timestamp" [ngStyle]="{'--delay': animator.getAnimationDelay(i, 500)}" />
   </div>
 </section>
 
-<section id="footer" class="home-section" [ngClass]="{'mobile': deviceService.isMobile()}">
-  <span class="footer-title">Portfolio von Leon Hoppe</span>
-  <a href="mailto://leon@ladenbau-hoppe.de">leon@ladenbau-hoppe.de</a>
-  <span>+49 1575 8839776</span>
-
-  <div id="social-media">
-    <a class="header-social" target="_blank" *ngFor="let social of socialLinks" href="{{social.href}}">
-      <img src="{{social.image}}" alt="{{social.href}}" draggable="false">
-    </a>
-  </div>
-</section>
+<app-footer />

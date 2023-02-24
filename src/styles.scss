@@ -1,8 +1,6 @@
 @use "sass:map";
 @use "theme";
 
-@import '@sweetalert2/theme-dark/dark.scss';
-
 html, body { height: 100vh; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 *, html {scroll-behavior: smooth !important;}
@@ -104,6 +102,63 @@ mat-drawer > div {
   }
 }
 
+.title {
+  font-size: 35px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.home-section {
+  padding-inline: theme.$padding;
+  user-select: none;
+  margin-bottom: 100px;
+}
+
+.timeline {
+  display: flex;
+  margin-top: 30px;
+
+  app-timestamp {
+    flex: 1 1 0;
+
+    &:last-of-type {
+      --show-bar: none;
+    }
+  }
+}
+
+.in-view {
+  .timestamp {
+    animation: fade-in 200ms forwards var(--delay) ease-out;
+
+    &:before {
+      animation: timestamp-in 500ms forwards var(--delay) ease-in-out;
+    }
+  }
+}
+
+@media screen and (max-width: theme.$mobile-width) {
+  .home-section {
+    padding-inline: theme.$padding-small;
+
+    .title {
+      font-size: 25px;
+    }
+  }
+
+  .timeline {
+    flex-direction: column-reverse;
+
+    app-timestamp:last-of-type {
+      --show-bar: block;
+    }
+
+    app-timestamp:first-of-type {
+      --show-bar: none;
+    }
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -111,5 +166,15 @@ mat-drawer > div {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes timestamp-in {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
   }
 }

@@ -2,22 +2,22 @@
   <img src="../../../favicon.ico" alt="logo" class="logo" draggable="false">
   <span class="name">Leon Hoppe</span>
 
-  <div id="header-links" *ngIf="!deviceService.isMobile()">
+  <div id="header-links">
     <a class="header-link" *ngFor="let link of navLinks" [routerLink]="link.href"  [ngClass]="{'active': cleanUrl(router.url) == link.href}">{{link.label}}</a>
   </div>
 
-  <div id="social-media" [ngStyle]="{'margin-left': deviceService.isMobile() ? 'auto' : ''}">
+  <div id="social-media">
     <a class="header-social" target="_blank" *ngFor="let social of socialLinks" href="{{social.href}}">
       <img src="{{social.image}}" alt="{{social.href}}" draggable="false">
     </a>
   </div>
 </nav>
 
-<section id="content" [ngStyle]="{'height': deviceService.isMobile() ? 'calc(100% - 102px)' : 'calc(100% - 51px)'}">
+<section id="content">
   <ng-content></ng-content>
 </section>
 
-<nav *ngIf="deviceService.isMobile()" class="footer">
+<nav class="footer">
   <button mat-button class="footer-link" *ngFor="let link of navLinks" [routerLink]="link.href" [ngClass]="{'active': cleanUrl(router.url) == link.href}">
     <mat-icon>{{link.icon}}</mat-icon>
   </button>

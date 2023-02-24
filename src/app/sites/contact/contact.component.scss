@@ -3,10 +3,6 @@
 .hider {
   overflow: hidden;
   height: 100%;
-
-  &.mobile {
-    overflow-y: auto;
-  }
 }
 
 .form-wrapper {
@@ -64,8 +60,14 @@
       }
     }
   }
+}
 
-  &.mobile {
+@media screen and (max-width: theme.$mobile-width) {
+  .hider {
+    overflow-y: auto;
+  }
+
+  .form-wrapper {
     display: block;
     height: max-content;
 

@@ -1,4 +1,14 @@
-$text-move: hover-text-move 300ms forwards ease-out;
+@keyframes hover-text {
+  from {
+    opacity: var(--opa-1);
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: var(--opa-2);
+    transform: translateY(-20px);
+  }
+}
 
 .button {
   display: flex;
@@ -13,42 +23,27 @@ $text-move: hover-text-move 300ms forwards ease-out;
   border-radius: 20px;
   text-decoration: none;
   font-size: 13px;
+  overflow: hidden;
 
   .text-1 {
+    --opa-2: 0;
+    --opa-1: 1;
     margin-top: 12px;
   }
 
   .text-2 {
+    --opa-2: 1;
+    --opa-1: 0;
     opacity: 0;
   }
 
   &:hover {
     .text-1 {
-      animation: hover-text 250ms forwards ease-out reverse, $text-move;
+      animation: hover-text 300ms forwards ease-out;
     }
 
     .text-2 {
-      animation: hover-text 300ms forwards ease-out, $text-move;
+      animation: hover-text 300ms forwards ease-out;
     }
-  }
-}
-
-@keyframes hover-text {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hover-text-move {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-20px);
   }
 }

@@ -50,6 +50,7 @@ $gradient-straight: linear-gradient($primary, $secondary);
 
 $padding: 12.5vw;
 $padding-small: 5vw;
+$mobile-width: 750px;
 
 $desc-color: #7c8393;
 $border-color: #2d2d2d;
@@ -64,26 +65,6 @@ body {
 
 * {
   color: map.get($text, 'text');
-}
-
-.title {
-  font-size: 35px;
-  display: inline;
-  margin-right: 10px;
-}
-
-.home-section {
-  padding-inline: $padding;
-  user-select: none;
-  margin-bottom: 100px;
-
-  &.mobile {
-    padding-inline: $padding-small;
-
-    .title {
-      font-size: 25px;
-    }
-  }
 }
 
 .mat-mdc-text-field-wrapper {

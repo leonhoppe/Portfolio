@@ -2,7 +2,7 @@
 @use "sass:map";
 
 #tech-projects {
-  margin-top: 200px;
+  margin-top: 50px;
   position: relative;
 
   .chart {
@@ -26,16 +26,6 @@
 
     .chart {
       justify-content: center;
-    }
-  }
-
-  &.mobile {
-    margin-top: 50px;
-
-    .chart .chart-container {
-      aspect-ratio: 1 / 1;
-      width: 100%;
-      height: auto;
     }
   }
 }
@@ -68,8 +58,20 @@
       }
     }
   }
+}
 
-  &.mobile #skills-wrapper {
+@media screen and (max-width: theme.$mobile-width) {
+  #additional #skills-wrapper {
     flex-direction: column;
+  }
+
+  #tech-projects {
+    margin-top: 50px;
+
+    .chart .chart-container {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: auto;
+    }
   }
 }

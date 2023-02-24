@@ -1,0 +1,39 @@
+@use "src/theme";
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 120px;
+  user-select: unset;
+
+  .footer-title {
+    background: theme.$gradient;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    user-select: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  #social-media {
+    display: flex;
+    gap: 5px;
+    user-select: none;
+
+    .header-social > img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: theme.$mobile-width) {
+  #footer *:not(.footer-title) {
+    display: none;
+  }
+}

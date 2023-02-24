@@ -1,0 +1,13 @@
+#about {
+  margin-top: 50px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 1200px) {
+  #about {
+    grid-template-columns: unset;
+    grid-template-rows: repeat(2, max-content);
+  }
+}

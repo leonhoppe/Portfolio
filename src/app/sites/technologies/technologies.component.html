@@ -1,4 +1,4 @@
-<section class="home-section" id="tech-projects" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section class="home-section" id="tech-projects">
   <div class="artwork">
     <div class="circle big-circle"></div>
     <div class="circle small-circle"></div>
@@ -10,21 +10,21 @@
   </div>
 </section>
 
-<section class="home-section" id="languages" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section class="home-section" id="languages">
   <h1 class="title">Programmiersprachen</h1>
   <div class="technologies-wrapper">
     <app-technology *ngFor="let technology of technologies | languages" [technology]="technology" />
   </div>
 </section>
 
-<section class="home-section" id="frameworks" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section class="home-section" id="frameworks">
   <h1 class="title">Frameworks</h1>
   <div class="technologies-wrapper">
     <app-technology *ngFor="let technology of technologies | frameworks" [technology]="technology" />
   </div>
 </section>
 
-<section class="home-section" id="additional" [ngClass]="{'mobile': deviceService.isMobile()}">
+<section class="home-section" id="additional">
   <h1 class="title">Zusätzliche Fähigkeiten</h1>
   <div id="skills-wrapper">
     <div class="skill" *ngFor="let skill of technologies | skills">
