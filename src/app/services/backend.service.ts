@@ -65,7 +65,7 @@ export class BackendService {
   public async getSocials(): Promise<Social[]> {
     return [
       {href: 'https://www.instagram.com/leonh.23/', image: 'https://instagram.com/favicon.ico'},
-      {href: 'https://git.leon-hoppe.de/leon.hoppe', image: 'https://git.leon-hoppe.de/favicon.ico'},
+      {href: 'https://gitlab.com/leon.hoppe', image: 'https://gitlab.com/favicon.ico'},
       {href: 'mailto://leon@ladenbau-hoppe.de', image: 'https://webmail.strato.de/favicon.ico'}
     ];
   }
