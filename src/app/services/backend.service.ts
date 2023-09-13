@@ -23,7 +23,7 @@ export class BackendService {
   ]
 
   constructor() {
-    this.pb = new PocketBase('https://ed168214-77da-44f1-9a61-859abb49edf8.api.leon-hoppe.de');
+    this.pb = new PocketBase('https://api.leon-hoppe.de');
   }
 
   public async getProjects(): Promise<Project[]> {
